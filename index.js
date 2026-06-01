@@ -3,8 +3,15 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// IMPORTANTE: Solo acepta peticiones de tu GitHub Pages
-app.use(cors({ origin: 'https://jlrojass.github.io' }));
+// Acepta peticiones de cualquier parte de tu dominio de GitHub Pages
+app.use(cors({ 
+  origin: [
+    'https://jlrojass.github.io', 
+    'https://jlrojass.github.io/Consola_Administracion'
+  ],
+  methods: ['POST', 'GET', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json());
 
 app.post('/api/analisis', async (req, res) => {
